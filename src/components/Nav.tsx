@@ -1,13 +1,32 @@
+import { NavLink } from "react-router-dom";
+
 export function Nav() {
   return (
     <nav className="nav" aria-label="Main">
-      <a href="#home" className="nav__brand">
+      <NavLink to="/" className="nav__brand" end>
         JL
-      </a>
+      </NavLink>
       <ul className="nav__links">
-        <li><a href="#about">About</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#contact">Get in touch</a></li>
+        <li>
+          <NavLink to="/about" className={({ isActive }) => isActive ? "nav__link nav__link--active" : "nav__link"}>
+            About
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/campus" className={({ isActive }) => isActive ? "nav__link nav__link--active" : "nav__link"}>
+            Campus
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/skills" className={({ isActive }) => isActive ? "nav__link nav__link--active" : "nav__link"}>
+            Skills
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/contact" className={({ isActive }) => isActive ? "nav__link nav__link--active" : "nav__link"}>
+            Contact
+          </NavLink>
+        </li>
       </ul>
     </nav>
   );

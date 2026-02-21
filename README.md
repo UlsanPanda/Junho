@@ -20,15 +20,23 @@ The site uses **Editorial Luxury** with **Cormorant Garamond** as a fallback (lo
 
 Until then, Cormorant Garamond gives a similar editorial serif look.
 
+## Site structure
+
+- **Home** (`/`) — Hero, explore links, projects
+- **About** (`/about`) — Your bio (from `portfolio.ts`)
+- **Contact** (`/contact`) — Get in touch, email, LinkedIn
+- **Campus** (`/campus`) — Campus involvement (clubs, activities)
+- **Skills** (`/skills`) — Certifications and skills
+
 ## Customize your content
 
 Edit **`src/data/portfolio.ts`** to update:
 
-- **Site** — name, tagline, email, and social links (GitHub, LinkedIn, Twitter)
-- **About** — heading and short bio
-- **Projects** — title, description, link, and tags for each project
-
-No need to touch components unless you want to change layout or add sections.
+- **site** — name, tagline, email, LinkedIn
+- **about** — heading and bio (shown on About page)
+- **projects** — title, description, link, tags (shown on Home)
+- **campusInvolvement** — name, role, description, period for each club/activity
+- **skills** — certifications (name, issuer, year) and skillGroups (title + items array)
 
 ## Scripts
 

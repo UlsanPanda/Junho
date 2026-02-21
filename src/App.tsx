@@ -1,33 +1,26 @@
-import { site } from "./data/portfolio";
-import { Nav } from "./components/Nav";
-import { Hero } from "./components/Hero";
-import { About } from "./components/About";
-import { Projects } from "./components/Projects";
-import { Contact } from "./components/Contact";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Layout } from "./components/Layout";
+import { ScrollToTop } from "./components/ScrollToTop";
+import { HomePage } from "./pages/HomePage";
+import { AboutPage } from "./pages/AboutPage";
+import { ContactPage } from "./pages/ContactPage";
+import { CampusPage } from "./pages/CampusPage";
+import { SkillsPage } from "./pages/SkillsPage";
 
 function App() {
   return (
-    <>
-      <Nav />
-      <main>
-        <Hero />
-        <About />
-        <Projects />
-        <Contact />
-      </main>
-      <footer className="footer">
-        <div className="footer__contact">
-          <a href={`mailto:${site.email}`}>{site.email}</a>
-          {site.links.length > 0 && (
-            <>
-              <span className="footer__separator">·</span>
-              <a href={site.links[0].href} target="_blank" rel="noopener noreferrer">{site.links[0].label}</a>
-            </>
-          )}
-        </div>
-        <p className="footer__copy">© {new Date().getFullYear()} {site.name}</p>
-      </footer>
-    </>
+    <BrowserRouter>
+      <ScrollToTop />
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<HomePage />} />
+          <Route path="about" element={<AboutPage />} />
+          <Route path="contact" element={<ContactPage />} />
+          <Route path="campus" element={<CampusPage />} />
+          <Route path="skills" element={<SkillsPage />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 

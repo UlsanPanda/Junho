@@ -36,3 +36,39 @@ export const projects = [
     tags: ["Design", "UI", "Figma"],
   },
 ] as const;
+
+export const campusInvolvement = [
+  {
+    name: "Club or organization name",
+    role: "Role (e.g. Member, Treasurer)",
+    description: "Brief description of what the club does and your involvement.",
+    period: "2024 – Present",
+  },
+  {
+    name: "Another organization",
+    role: "Role",
+    description: "Short description of activities and impact.",
+    period: "2023 – 2024",
+  },
+] as const;
+
+export const skills = {
+  certifications: [
+    { name: "Certification name", issuer: "Issuing organization", year: "2024" },
+    { name: "Another certification", issuer: "Issuer", year: "2023" },
+  ],
+  skillGroups: [
+    {
+      title: "Technical",
+      items: ["Python", "R", "Excel", "SQL", "Data analysis"],
+    },
+    {
+      title: "Tools & platforms",
+      items: ["Tableau", "JIRA", "Git", "Figma"],
+    },
+    {
+      title: "Other",
+      items: ["Project management", "Technical writing"],
+    },
+  ],
+} as const;
