@@ -1,16 +1,20 @@
 /* --- Design tokens --- */
 :root {
   --bg: #F5EFE6;
-  --bg-elevated: #ebe5dc;
+  --bg-elevated: #f0eae1;
   --text: #1a1918;
   --text-muted: #5c5956;
   --accent: #F37021;
   --accent-hover: #e06518;
-  --border: rgba(26, 25, 24, 0.12);
-  --radius: 12px;
+  --border: rgba(26, 25, 24, 0.1);
+  --radius: 10px;
+  --radius-sm: 6px;
   --font-editorial: "Editorial Luxury", "Cormorant Garamond", Georgia, serif;
-  --max-width: 720px;
-  --section-padding: clamp(3rem, 8vw, 5rem);
+  --max-width: 680px;
+  --section-padding: clamp(3.5rem, 10vw, 6rem);
+  --ease-out: cubic-bezier(0.33, 1, 0.68, 1);
+  --shadow-soft: 0 2px 12px rgba(26, 25, 24, 0.06);
+  --shadow-hover: 0 8px 28px rgba(26, 25, 24, 0.08);
 }
 
 /* Editorial Luxury: add your font files to public/fonts/ and uncomment below */
@@ -30,6 +34,11 @@
   box-sizing: border-box;
 }
 
+#root {
+  position: relative;
+  z-index: 1;
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -39,17 +48,28 @@ body {
   min-height: 100vh;
   font-family: var(--font-editorial);
   font-size: 1.0625rem;
-  line-height: 1.65;
+  line-height: 1.7;
   color: var(--text);
   background-color: var(--bg);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Subtle paper-like texture (behind content) */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  opacity: 0.6;
+}
+
 a {
   color: var(--accent);
   text-decoration: none;
-  transition: color 0.2s ease;
+  transition: color 0.25s var(--ease-out);
 }
 a:hover {
   color: var(--accent-hover);
@@ -63,9 +83,10 @@ a:hover {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem 1.5rem;
-  background: rgba(245, 239, 230, 0.9);
-  backdrop-filter: blur(12px);
+  padding: 1.125rem 1.5rem;
+  background: rgba(245, 239, 230, 0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--border);
 }
 
@@ -73,8 +94,9 @@ a:hover {
   font-family: var(--font-editorial);
   font-weight: 600;
   font-size: 1.25rem;
-  letter-spacing: -0.02em;
+  letter-spacing: 0.02em;
   color: var(--text);
+  transition: color 0.25s var(--ease-out);
 }
 .nav__brand:hover {
   color: var(--accent);
@@ -82,15 +104,17 @@ a:hover {
 
 .nav__links {
   display: flex;
-  gap: 1.75rem;
+  gap: 2rem;
   list-style: none;
   margin: 0;
   padding: 0;
 }
 .nav__links a {
   color: var(--text-muted);
-  font-size: 0.9375rem;
+  font-size: 0.875rem;
   font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }
 .nav__links a:hover {
   color: var(--accent);
@@ -107,17 +131,29 @@ main {
 .section__title {
   font-family: var(--font-editorial);
   font-weight: 600;
-  font-size: 0.8125rem;
-  letter-spacing: 0.12em;
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--text-muted);
-  margin: 0 0 1.25rem;
+  margin: 0 0 1.5rem;
+  position: relative;
+  padding-bottom: 0.75rem;
+}
+.section__title::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 2rem;
+  height: 2px;
+  background: var(--accent);
+  border-radius: 1px;
 }
 
 /* --- Hero --- */
 .hero {
   padding: var(--section-padding) 0;
-  min-height: 70vh;
+  min-height: 72vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -125,35 +161,41 @@ main {
 
 .hero__name {
   font-family: var(--font-editorial);
-  font-weight: 700;
-  font-size: clamp(2.5rem, 6vw, 4rem);
-  letter-spacing: -0.03em;
-  line-height: 1.1;
-  margin: 0 0 0.5rem;
+  font-weight: 600;
+  font-size: clamp(2.75rem, 6.5vw, 4.25rem);
+  letter-spacing: 0.01em;
+  line-height: 1.08;
+  margin: 0 0 0.75rem;
   color: var(--text);
 }
 
 .hero__tagline {
-  font-size: 1.25rem;
+  font-size: 1.1875rem;
+  font-weight: 400;
   color: var(--text-muted);
-  margin: 0 0 2rem;
-  max-width: 28ch;
+  margin: 0 0 2.25rem;
+  max-width: 26ch;
+  line-height: 1.6;
 }
 
 .hero__cta {
   display: inline-block;
-  padding: 0.75rem 1.5rem;
+  padding: 0.875rem 1.75rem;
   background: var(--accent);
   color: #fff;
   font-weight: 600;
-  font-size: 0.9375rem;
+  font-size: 0.875rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   border-radius: var(--radius);
-  transition: background 0.2s ease, transform 0.15s ease;
+  box-shadow: var(--shadow-soft);
+  transition: background 0.3s var(--ease-out), transform 0.25s var(--ease-out), box-shadow 0.3s var(--ease-out);
 }
 .hero__cta:hover {
   background: var(--accent-hover);
   color: #fff;
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
 }
 
 /* --- About --- */
@@ -165,8 +207,10 @@ main {
 .about__body {
   margin: 0;
   color: var(--text-muted);
-  max-width: 55ch;
+  max-width: 52ch;
   white-space: pre-line;
+  font-size: 1.0625rem;
+  line-height: 1.75;
 }
 
 /* --- Projects --- */
@@ -181,7 +225,7 @@ main {
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.25rem;
 }
 
 .project-card {
@@ -190,16 +234,18 @@ main {
 
 .project-card__link {
   display: block;
-  padding: 1.25rem 1.5rem;
+  padding: 1.5rem 1.75rem;
   background: var(--bg-elevated);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   color: var(--text);
-  transition: border-color 0.2s ease, background 0.2s ease;
+  box-shadow: var(--shadow-soft);
+  transition: border-color 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out), transform 0.25s var(--ease-out);
 }
 .project-card__link:hover {
-  border-color: rgba(243, 112, 33, 0.4);
-  background: rgba(235, 229, 220, 0.9);
+  border-color: rgba(243, 112, 33, 0.25);
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-2px);
   color: var(--text);
 }
 
@@ -207,14 +253,15 @@ main {
   font-family: var(--font-editorial);
   font-weight: 600;
   font-size: 1.125rem;
-  margin: 0 0 0.35rem;
+  margin: 0 0 0.4rem;
+  letter-spacing: 0.01em;
 }
 
 .project-card__description {
   font-size: 0.9375rem;
   color: var(--text-muted);
-  margin: 0 0 0.75rem;
-  line-height: 1.55;
+  margin: 0 0 0.875rem;
+  line-height: 1.6;
 }
 
 .project-card__tags {
@@ -227,11 +274,13 @@ main {
 }
 
 .project-card__tag {
-  font-size: 0.75rem;
+  font-size: 0.6875rem;
   font-weight: 500;
-  padding: 0.25rem 0.6rem;
-  background: rgba(26, 25, 24, 0.08);
-  border-radius: 6px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.35rem 0.65rem;
+  background: rgba(26, 25, 24, 0.06);
+  border-radius: var(--radius-sm);
   color: var(--text-muted);
 }
 
@@ -243,41 +292,71 @@ main {
 
 .contact__intro {
   color: var(--text-muted);
-  margin: 0 0 1rem;
-  max-width: 40ch;
+  margin: 0 0 1.25rem;
+  max-width: 38ch;
+  line-height: 1.7;
 }
 
 .contact__email {
   display: inline-block;
   font-weight: 600;
   font-size: 1.125rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.75rem;
+  letter-spacing: 0.02em;
 }
 
 .contact__links {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: 1.25rem;
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
 .contact__link {
-  font-size: 0.9375rem;
+  font-size: 0.875rem;
   font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 }
 
 /* --- Footer --- */
 .footer {
   margin-top: var(--section-padding);
-  padding: 2rem 1.5rem;
+  padding: 2.5rem 1.5rem;
   border-top: 1px solid var(--border);
   text-align: center;
 }
 
-.footer p {
-  margin: 0;
+.footer__contact {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 0 0 0.75rem;
   font-size: 0.8125rem;
+  letter-spacing: 0.04em;
+}
+
+.footer__contact a {
+  color: var(--text-muted);
+}
+.footer__contact a:hover {
+  color: var(--accent);
+}
+
+.footer__separator {
+  color: var(--text-muted);
+  opacity: 0.6;
+  user-select: none;
+}
+
+.footer__copy {
+  margin: 0;
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
   color: var(--text-muted);
 }

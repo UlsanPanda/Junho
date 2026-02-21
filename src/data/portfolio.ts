@@ -5,18 +5,15 @@
 export const site = {
   name: "Junho Lee",
   tagline: "Developer & creator",
-  email: "hello@junholee.com",
+  email: "junho@junho-lee.com",
   links: [
-    { label: "GitHub", href: "https://github.com" },
-    { label: "LinkedIn", href: "https://linkedin.com" },
-    { label: "Twitter", href: "https://twitter.com" },
+    { label: "LinkedIn", href: "https://www.linkedin.com/in/junholee05/" },
   ],
 } as const;
 
 export const about = {
   heading: "About",
-  body: `I build things for the web and love turning ideas into clean, fast experiences. 
-  When I'm not coding, I'm probably reading, exploring new tools, or tweaking side projects.`,
+  body: "I'm Junho Lee, and I'm studying Industrial and Operations Engineering at the University of Michigan.",
 } as const;
 
 export const projects = [

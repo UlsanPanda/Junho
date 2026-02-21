@@ -3,7 +3,7 @@ import { site } from "../data/portfolio";
 export function Contact() {
   return (
     <section className="contact" id="contact">
-      <h2 className="section__title">Contact</h2>
+      <h2 className="section__title">Get in touch</h2>
       <p className="contact__intro">
         I’d love to hear from you—whether it’s a project idea, a question, or just a hello.
       </p>
