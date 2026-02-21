@@ -38,6 +38,29 @@ No need to touch components unless you want to change layout or add sections.
 | `npm run build`  | Build for production     |
 | `npm run preview`| Preview production build |
 
-## Deploy
+## Deploy with GitHub + Vercel
 
-After `npm run build`, deploy the `dist` folder to any static host (Vercel, Netlify, GitHub Pages, etc.).
+### 1. Push to GitHub
+
+Create a new repository on [GitHub](https://github.com/new) (e.g. `junho-lee-portfolio`). Do **not** add a README or .gitignore—you already have them. Then run:
+
+```bash
+git remote add origin https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git
+git branch -M main
+git push -u origin main
+```
+
+Replace `YOUR_USERNAME` and `YOUR_REPO_NAME` with your GitHub username and repo name.
+
+### 2. Deploy on Vercel
+
+1. Go to [vercel.com](https://vercel.com) and sign in with **GitHub**.
+2. Click **Add New…** → **Project**.
+3. **Import** your portfolio repo from the list (authorize Vercel to access GitHub if asked).
+4. Vercel will detect Vite automatically. Keep the defaults:
+   - **Build Command:** `npm run build`
+   - **Output Directory:** `dist`
+   - **Install Command:** `npm install`
+5. Click **Deploy**.
+
+Your site will get a URL like `your-project.vercel.app`. Every push to `main` will trigger a new deployment. You can add a custom domain in the project’s **Settings → Domains**.
