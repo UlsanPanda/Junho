@@ -1,4 +1,6 @@
+import { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { ComingSoon, getIsUnlocked } from "./components/ComingSoon";
 import { Layout } from "./components/Layout";
 import { ScrollToTop } from "./components/ScrollToTop";
 import { HomePage } from "./pages/HomePage";
@@ -8,6 +10,22 @@ import { CampusPage } from "./pages/CampusPage";
 import { SkillsPage } from "./pages/SkillsPage";
 
 function App() {
+  const [unlocked, setUnlocked] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+    setUnlocked(getIsUnlocked());
+  }, []);
+
+  if (!mounted) {
+    return null;
+  }
+
+  if (!unlocked) {
+    return <ComingSoon onUnlock={() => setUnlocked(true)} />;
+  }
+
   return (
     <BrowserRouter>
       <ScrollToTop />
