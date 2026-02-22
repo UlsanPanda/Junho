@@ -23,6 +23,7 @@ Until then, Cormorant Garamond gives a similar editorial serif look.
 ## Site structure
 
 - **Home** (`/`) — Hero, explore links, projects
+- **Resume** (`/resume`) — PDF resume (put your file at `public/resume.pdf`)
 - **About** (`/about`) — Your bio (from `portfolio.ts`)
 - **Contact** (`/contact`) — Get in touch, email, LinkedIn
 - **Campus** (`/campus`) — Campus involvement (clubs, activities)
