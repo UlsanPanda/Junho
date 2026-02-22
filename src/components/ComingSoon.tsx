@@ -1,4 +1,5 @@
-import { useState, FormEvent } from "react";
+import { useState } from "react";
+import type { FormEvent } from "react";
 import { site } from "../data/portfolio";
 
 const STORAGE_KEY = "portfolio_unlocked";
