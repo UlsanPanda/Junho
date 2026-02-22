@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import { ComingSoon, getIsUnlocked } from "./components/ComingSoon";
@@ -12,17 +12,7 @@ import { SkillsPage } from "./pages/SkillsPage";
 import { ResumePage } from "./pages/ResumePage";
 
 function App() {
-  const [unlocked, setUnlocked] = useState(false);
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-    setUnlocked(getIsUnlocked());
-  }, []);
-
-  if (!mounted) {
-    return null;
-  }
+  const [unlocked, setUnlocked] = useState(() => getIsUnlocked());
 
   if (!unlocked) {
     return <ComingSoon onUnlock={() => setUnlocked(true)} />;
