@@ -13,7 +13,7 @@
   --max-width: 680px;
   --section-padding: clamp(3.5rem, 10vw, 6rem);
   --ease-out: cubic-bezier(0.33, 1, 0.68, 1);
-  --theme-duration: 0.5s;
+  --theme-duration: 0.7s;
   --shadow-soft: 0 2px 12px rgba(26, 25, 24, 0.06);
   --shadow-hover: 0 8px 28px rgba(26, 25, 24, 0.08);
 }
