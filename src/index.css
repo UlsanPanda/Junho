@@ -13,6 +13,7 @@
   --max-width: 680px;
   --section-padding: clamp(3.5rem, 10vw, 6rem);
   --ease-out: cubic-bezier(0.33, 1, 0.68, 1);
+  --theme-duration: 0.5s;
   --shadow-soft: 0 2px 12px rgba(26, 25, 24, 0.06);
   --shadow-hover: 0 8px 28px rgba(26, 25, 24, 0.08);
 }
@@ -31,6 +32,45 @@
 }
 [data-theme="dark"] body::before {
   opacity: 0.15;
+}
+
+/* Theme transition: elements that change with light/dark */
+.section__title,
+.hero__name,
+.hero__tagline,
+.about__body,
+.project-card__link,
+.project-card__title,
+.project-card__description,
+.project-card__tag,
+.home-links__card,
+.home-links__label,
+.home-links__desc,
+.page__title,
+.page__subtitle,
+.page__lead,
+.contact-page__intro,
+.contact-page__email,
+.campus-card,
+.campus-card__name,
+.campus-card__role,
+.campus-card__period,
+.campus-card__description,
+.skills-section__title,
+.cert-card,
+.cert-card__name,
+.cert-card__meta,
+.skill-group__title,
+.skill-tag,
+.coming-soon__card,
+.coming-soon__title,
+.coming-soon__subtitle,
+.coming-soon__text,
+.coming-soon__error,
+.resume-page__embed,
+.theme-toggle,
+.theme-toggle__icon {
+  transition: background-color var(--theme-duration) var(--ease-out), border-color var(--theme-duration) var(--ease-out), color var(--theme-duration) var(--ease-out), box-shadow var(--theme-duration) var(--ease-out);
 }
 
 /* Editorial Luxury: add your font files to public/fonts/ and uncomment below */
@@ -69,6 +109,7 @@ body {
   background-color: var(--bg);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: background-color var(--theme-duration) var(--ease-out), color var(--theme-duration) var(--ease-out);
 }
 
 /* Subtle paper-like texture (behind content) */
@@ -80,12 +121,13 @@ body::before {
   z-index: 0;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
   opacity: 0.6;
+  transition: opacity var(--theme-duration) var(--ease-out);
 }
 
 a {
   color: var(--accent);
   text-decoration: none;
-  transition: color 0.25s var(--ease-out);
+  transition: color 0.25s var(--ease-out), background-color var(--theme-duration) var(--ease-out), border-color var(--theme-duration) var(--ease-out);
 }
 a:hover {
   color: var(--accent-hover);
@@ -108,6 +150,9 @@ a:hover {
 [data-theme="dark"] .nav {
   background: rgba(28, 28, 28, 0.92);
 }
+.nav {
+  transition: background-color var(--theme-duration) var(--ease-out), border-color var(--theme-duration) var(--ease-out);
+}
 .nav__right {
   display: flex;
   align-items: center;
@@ -120,7 +165,7 @@ a:hover {
   font-size: 1.25rem;
   letter-spacing: 0.02em;
   color: var(--text);
-  transition: color 0.25s var(--ease-out);
+  transition: color 0.25s var(--ease-out), background-color var(--theme-duration) var(--ease-out);
 }
 .nav__brand:hover {
   color: var(--accent);
@@ -139,6 +184,7 @@ a:hover {
   font-weight: 500;
   letter-spacing: 0.04em;
   text-transform: uppercase;
+  transition: color 0.25s var(--ease-out);
 }
 .nav__links .nav__link:hover,
 .nav__links .nav__link--active {
@@ -160,7 +206,7 @@ a:hover {
   border-radius: var(--radius-sm);
   color: var(--text-muted);
   cursor: pointer;
-  transition: color 0.2s var(--ease-out), border-color 0.2s var(--ease-out), background 0.2s var(--ease-out);
+  transition: color 0.2s var(--ease-out), border-color 0.2s var(--ease-out), background 0.2s var(--ease-out), background-color var(--theme-duration) var(--ease-out);
 }
 .theme-toggle:hover {
   color: var(--accent);
@@ -291,7 +337,7 @@ main {
   border-radius: var(--radius);
   color: var(--text);
   box-shadow: var(--shadow-soft);
-  transition: border-color 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out), transform 0.25s var(--ease-out);
+  transition: background-color var(--theme-duration) var(--ease-out), border-color 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out), transform 0.25s var(--ease-out), color var(--theme-duration) var(--ease-out);
 }
 .project-card__link:hover {
   border-color: rgba(243, 112, 33, 0.25);
@@ -378,6 +424,11 @@ main {
   padding: 2.5rem 1.5rem;
   border-top: 1px solid var(--border);
   text-align: center;
+  transition: border-color var(--theme-duration) var(--ease-out);
+}
+.footer__contact a,
+.footer__copy {
+  transition: color var(--theme-duration) var(--ease-out);
 }
 
 .footer__contact {
@@ -602,7 +653,7 @@ main {
   border-radius: var(--radius);
   color: var(--text);
   box-shadow: var(--shadow-soft);
-  transition: border-color 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out), transform 0.25s var(--ease-out);
+  transition: background-color var(--theme-duration) var(--ease-out), border-color 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out), transform 0.25s var(--ease-out), color var(--theme-duration) var(--ease-out);
 }
 .home-links__card:hover {
   border-color: rgba(243, 112, 33, 0.25);
